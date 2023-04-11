@@ -3,6 +3,7 @@
 
 // String name = "utkarsh";
 // int age = 12;
+// boolean anyVariableName = 
 
 // System.out.print(age, name) // 12 utkarsh --> wrong
 // System.out.print(age + " " + name) // 12  utkarsh ---> write
@@ -46,13 +47,14 @@ const lastName = "utkarsh const";
 // const canVote = true;
 // const gender = 'M'
 
-lastName = "thakur"
+lastName = "thakur" //-> this is illegal
 
 console.log(lastName);
 
 
 // HW -> why VAR are bad ??? 
+// 
 
 
-
+// ------
 
