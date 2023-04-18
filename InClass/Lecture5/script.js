@@ -20,7 +20,7 @@
 
 console.log("hello")
 
-function calculator(a, b, action) {
+function spaceShip(a, b, action) {
     try {
         let res;
         if(action === "add") {
@@ -50,14 +50,14 @@ function calculator(a, b, action) {
     
 }
 
-let result2  = calculator(1,2, 'sub') // -1
+let result2  = spaceShip(1,2, 'sub') // -1
 console.log(result2, " sub")
 
-let result3  = calculator(1,2, 'multiply') // 2
+let result3  = spaceShip(1,2, 'multiply') // 2
 console.log(result3, " multiply")
 
 
-let result1  = calculator(1,2, 'add') // 3
+let result1  = spaceShip(1,2, 'add') // 3
 console.log(result1, " add")
 
 

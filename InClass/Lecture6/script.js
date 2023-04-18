@@ -106,57 +106,249 @@
 
 
 
-spaceShip(lifeSupport, 'utkarshasdasdasdasdas', 24)
-// space ships method 
-function spaceShip(func, num1, num2) {
-    // check for auth 
-    // log 
+// spaceShip(lifeSupport, 'utkarshasdasdasdasdas', 24)
+// // space ships method 
+// function spaceShip(func, num1, num2) {
+//     // check for auth 
+//     // log 
 
-    console.log(num1, num2);
+//     console.log(num1, num2);
 
-    if(num1 === "utkarsh") {
-        func()
-    } else {
-        console.log('hacking spaceship dectected')
-    }
+//     if(num1 === "utkarsh") {
+//         func()
+//     } else {
+//         console.log('hacking spaceship dectected')
+//     }
     
 
 
-}
+// }
 
-function weapons() {
-    console.log('weapons acrtivaged');
-}
+// function weapons() {
+//     console.log('weapons acrtivaged');
+// }
 
-function lifeSupport() {
-    console.log('lifeSupport');
-}
+// function lifeSupport() {
+//     console.log('lifeSupport');
+// }
 
-function food() {
-    console.log('food');
-}
-
-
-food()
-
-// call be reference vall byt value 
-
-food()
-
-food
+// function food() {
+//     console.log('food');
+// }
 
 
-function sum(a,b) {
-    return a + b;
-}
+// food()
 
-sum() // function call.
+// // call be reference vall byt value 
 
-sum
+// food()
+
+// food
+
+
+// function sum(a,b) {
+//     return a + b;
+// }
+
+// sum() // function call.
+
+// sum
 
 
 
 // Question: what is the difference b/w sum() vs sum 
+
+
+// function sum(a,b) {
+//  let c = a +b;
+//  return c;
+// }
+
+
+// let res = sum(1,2)
+// console.log(res)
+
+
+// one big function ... 
+// -> // needs to do some important work and then it will call your function.
+
+
+//logging 
+// and then i should add
+
+
+// function logging(callBackFunc) {
+//     // log
+//     console.log('logging') // 5 se
+//     callBackFunc(1,2)
+// }
+
+// function add(a,b) {
+//     console.log(a+b)
+//     return a+ b
+// }
+
+// logging(add)
+
+
+// logging
+// 3
+
+
+
+// 
+// lgging  sum function 
+
+// function logging() {
+//     // google logging
+//     // console.log('logging') 
+//     return u
+// }
+
+// function add(a,b) {
+//     console.log(a+b)
+//     return a+ b
+// }
+
+// logging() // google
+// add(1,2)
+
+//logging ?
+// requreiment -> 1. need to log and then you need to add. 
+
+3
+// logging
+
+
+// there is a big function, hey do your work and after that you can execute smaller function.
+// 
+
+
+
+// caclculator -> 
+
+// 
+
+// function calculator(operation) {
+
+//     if(operation === 'add') {
+//         return function(a,b) {
+//             return a+b
+//         }
+//     }
+
+// }
+
+
+// let num1 = 1;
+// let num2 = 2;
+
+// calculator('add')
+
+
+
+
+// Functions -----> 
+
+
+// 1.  function declaration 
+
+// function sum() {
+
+// }
+
+// 2. function Expression -> 
+
+
+// variable name 
+// const sum = function(a,b) {
+//     return a +b
+// }
+
+// let res = sum(100,21)
+// console.log(res)
+
+
+// 1. named functions 
+
+// 2. anonymous functions
+
+//  named function
+// function abc() {
+
+// }
+
+// anynomous function...
+// const sum1 = function(a,b) {
+//     // anything
+
+// }
+
+
+
+//  arrow functions 
+
+// const sumArrow = (a, b) => {
+//     return a + b;
+// }
+
+// let resultArrow = sumArrow(1,3);
+// console.log(resultArrow, "sum arrow")
+
+
+
+
+
+// ------------------ - - - - - - callbacks -------------- 
+
+// function loggign(callBackFunction) {
+//     // please do your woerk
+//     console.log('logging') 
+
+//     callBackFunction();
+
+// }
+
+// function add(a, b) {
+//     console.log(a+b)
+//     return undefined
+// }
+
+// loggign(add)
+
+
+// add vs add()
+
+
+// ---------------------- higher order functions --------- 
+
+// the functions which can return a function is HOF (calculatorMotherEarth)
+
+// the funciton which can acceept a function as an argument  (loggign)
+
+function calculatorMotherEarth(condition) {
+
+    if(condition === 'add') {
+        return function(a,b) {
+            return a + b
+        }
+    } else if (condition === 'sub') {
+        return function(a,b) {
+            return a-b
+        }
+    }
+}
+
+//  aliens turf
+
+let functionAdd = calculatorMotherEarth('add')
+
+console.log('returned funciton  --------- ')
+console.log(functionAdd)
+
+
+// ........ 
+
 
 
 
