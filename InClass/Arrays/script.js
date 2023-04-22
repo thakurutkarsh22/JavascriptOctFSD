@@ -291,20 +291,129 @@
 // all of them no 
 
 
-let arr = [19,21,29,44,51,69,77,88];
+// let arr = [19,21,29,44,51,69,77,88];
 
-    let filterdArray = arr.filter((value) => {
-        if(value % 2 ==0) {
-            return true;
-        } else {
-            return false;
-        }
-    })
+//     let filterdArray = arr.filter((value) => {
+//         if(value % 2 ==0) {
+//             return true;
+//         } else {
+//             return false;
+//         }
+//     })
 
-    console.log(filterdArray)
+//     console.log(filterdArray)
 
 
 
     // 1. go to every element 
     // 2. execute the function 
     // 3. except (foreach) every function cares about return value.
+
+
+    // FIND and FIND INDEX -> its going to search from the start
+
+
+
+    // 4. Array .find 
+
+    // let arr = [1,2,3,4,5,6,7,9,99,104,231,89,00, 99];
+
+    // let restFindArr = arr.find( (value) => {
+    //     if(value == 9999) {
+    //         return true
+    //     }
+    // } )
+
+    // console.log(restFindArr)
+
+
+    // 5. Findindex
+
+    // let arr = [1,99,2,3,4,5,6,7,9,99,104,231,89,00 ];
+
+    // let indexOf99 = arr.findIndex( (value) => {
+    //     if(value == 99) {
+    //         return true;
+    //     }
+    // } )
+
+    // console.log(indexOf99)
+
+
+    // 6. Find last 
+
+    // let arr = [1,99,2,3,4,5,6,7,9,99,104,231,89,00 ];
+
+    // let result = arr.findLast((value) => {
+    //     if(value == 99) {
+    //         return true;
+    //     }
+    // })
+
+
+    // 7. FindLastIndex
+    // let arr = [1,99,2,3,4,5,6,7,9,99,104,231,89,00 ];
+
+    // let result = arr.findLastIndex((value) => {
+    //     if(value == 99) {
+    //         return true;
+    //     }
+    // })
+    
+
+
+
+    // ******** WARNING *********
+
+    // this is different from the others ...... 
+
+
+
+    // 7. array. reduce 
+
+
+    // let sumArr = [1,2,3,4,5,6,7,8,9,10] // 55
+
+    let sum = 0;
+
+    // ---- way 1
+    // for(let item of sumArr) {
+    //     sum += item
+    // }
+
+    // console.log(sum);
+
+    // ---- way 2
+
+    // for(let i = 0; i<sumArr.length; i++) {
+    //     sum += sumArr[i]
+    // }
+
+    // ---- way 3
+
+    // sumArr.forEach((value) => {
+    //     sum += value
+    // })
+
+    // console.log(sum);
+
+
+    // 1. Iterate go to every element 
+    // 2. Call the callback function 
+
+    let sumArr = [1,2,3,4,5,6,7,8,9,10] // 55
+
+
+    let ans = sumArr.reduce( (accumulator, value) => {
+        return accumulator + value
+    }, [])
+
+    console.log("accumiulator", ans)
+
+
+    // /Ques you want sum of all odd numbers 
+
+
+
+
+
