@@ -404,14 +404,139 @@
     let sumArr = [1,2,3,4,5,6,7,8,9,10] // 55
 
 
-    let ans = sumArr.reduce( (accumulator, value) => {
-        return accumulator + value
-    }, [])
+    // let ans = sumArr.reduce( (accumulator, value) => {
+    //     return accumulator + value
+    // }, [])
 
-    console.log("accumiulator", ans)
+    // console.log("accumiulator", ans)
 
 
     // /Ques you want sum of all odd numbers 
+
+
+    // let result = sumArr.reduce((accumulator, value) => {
+    //     if(value % 2 !== 0) {
+    //         return accumulator + value;
+    //     } else {
+    //         return accumulator
+    //     }
+    // }, 0);
+
+    // console.log(result)
+
+
+    // [2,4,6,8,10,12,14] -> ans
+    // [1,2,3,4,5,6,7] ; -> // input 
+
+
+    //------- map 
+
+    // let arr = [1,2,3,4,5]; //-> input 
+    // // output [ 2, 4, 6, 8, 10 ]
+    // let ansArr = arr.map( (value) => {
+    //     return value * 2;
+    // });
+
+
+    // console.log(ansArr, "ansArr of map")
+
+
+    // let arr = [20,12,33,84,51];
+
+    // let result = arr.reduce( (accum, value) => {
+    //      accum.push(2* value)
+    //      return accum
+    // }, [])
+
+    // console.log(result);
+
+
+
+
+
+
+    // ----------- COPY an ARRAY 
+
+
+
+    //  ----- this is not how you should copy ..... 
+    // let arr = [1,2,3,4,5,6]
+
+    // let arrCopy = arr;
+
+
+    // arrCopy.push(99)
+
+    // console.log(arr, "org array") 
+    // console.log(arrCopy, "copy array") 
+
+
+
+    //  --------- COPY -----------------
+
+    // let arr = [1,2,3,4]
+
+
+    //------ way 1 FOR loop
+
+    // let newArr =[];
+
+    // for (const item of arr) {
+    //    newArr.push(item);
+    // }
+
+    // newArr.push(100);
+
+    // console.log(arr, "org array") 
+    // console.log(newArr, "copy array") 
+
+
+    //----- Way 2 MAP
+
+
+    // let arr = [1,2,3,4]
+
+
+    // let newArr = arr.map( (value) => {
+    //     return value
+    // } )
+
+    // newArr.push(100)
+
+    // console.log(arr, "org array") 
+    // console.log(newArr, "copy array") 
+
+
+
+
+    // ------ way 3 SPREAD OPERATOR ---- 
+
+    let arr = [1,2,3,4, 5] // abc@ 123
+
+    let newArr = [...arr] // abc@345
+    
+    newArr.push(180)
+
+
+    console.log(arr, "org array") 
+    console.log(newArr, "copy array") 
+
+
+    //  ------ way 4 REDUCE ----- HW //// 
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // 
 
 
 
