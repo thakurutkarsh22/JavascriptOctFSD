@@ -148,7 +148,7 @@ function SearchName(name) {
 
 // 1. Create element 
 const liElement = document.createElement("li"); 
-console.log("liElement new ", liElement)
+// console.log("liElement new ", liElement)
 
 // 2. Edit the element  -> edit the name
 
@@ -171,6 +171,25 @@ const unorderedList = document.getElementById("names");// [li, li li li li ]
 
 
 unorderedList.innerHTML =  unorderedList.innerHTML + "<li>Utkarsh</li>\n"
+
+
+
+// ------ Removal of Element -------------
+
+
+// 1. Select the element to be Removed
+// 2. To basically do a .remove() on that element
+
+/////// -----  to remove the whole list
+// const elementThatIWantToRemove = document.getElementById("names")
+
+// elementThatIWantToRemove.remove();
+
+
+// const removeLastElement = document.querySelector("#names > li:nth-child(6)");
+// removeLastElement.remove();
+// console.log(removeLastElement);
+
 
 
 
