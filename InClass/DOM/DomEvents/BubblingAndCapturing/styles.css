@@ -1,0 +1,29 @@
+.container {
+    border:  1px solid black;
+
+}
+
+
+#grandParent {
+    width: 400px ;
+    height: 400px;
+
+    background-color: red;
+}
+
+
+#parent {
+    width: 300px;
+    height: 300px;
+    margin: 20px;
+
+    background-color: green;
+}
+
+#child {
+    width: 100px;
+    height: 100px;
+    margin: 20px;
+
+    background-color: aqua;
+}
