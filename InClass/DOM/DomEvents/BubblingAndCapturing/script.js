@@ -18,9 +18,14 @@ const child = document.getElementById("child");
 
 // -------- Capturing -------------- (this is not used most of the times )
 
-// grandParent.addEventListener("click", () => {
+// grandParent.addEventListener("click", (event) => {
 //     console.log("grandparent clicked")
+
+//     event.stopPropagation();
+
 // }, true)
+
+// grandParent.addEventListener("dragover", ())
 
 
 // parent.addEventListener("click", () => {
@@ -38,50 +43,81 @@ const child = document.getElementById("child");
 
 
 
+
 // ---------  Bubbling  -------- (This by default this is used.... )
-grandParent.addEventListener("click", abc, false)
+// grandParent.addEventListener("click", abc, false)
 
 
 // parent.addEventListener("click", (event) => {
-//     console.log("parent clicked", event)
+//     console.log("parent clicked")
 
 // }, false)
 
-function abc(abc) {
-    console.log("grandparent clicked", event)
-    
-    
-    // this callback function will be attaced to the element 
+// function abc(abc) {
+//     console.log("grandparent clicked")
+//     // this callback function will be attaced to the element 
 
-    console.dir(grandParent)
+//     console.dir(grandParent)
+// }
+
+
+
+// child.addEventListener("click", (event) => {
+
+//     console.log("child Clicked") 
+//     event.stopPropagation();
+// }, false)
+
+
+
+//  HOW TO STOP the EVENT  -> event.stopPropogation();
+
+
+// -> THis will stop the event object there only (on that element), that 
+// event propogation will be FREZED. 
+
+
+
+// addEventListner is basically adding an object in the memory 
+// more you add this Listner more memory it is going to take.
+
+
+
+
+
+
+//  -------- Removal of Listner (removeEventListener) -------------
+
+const button = document.getElementById("button");
+
+button.addEventListener("click", buttonClickHandler)
+
+
+function buttonClickHandler(event) {
+    console.log("click me ")
+
+
 }
 
 
+// after 5 seconds ecexute this code
+// setTimeout(() => {
+    
+    
+//     button.removeEventListener("click", buttonClickHandler)
 
 
 
-child.addEventListener("click", (event) => {
-
-    console.log("child Clicked", event) 
-}, false)
-
-
-
-// DOM -> Traverse -> Changes -> String Name 
-
-// DOM traversal is VVV consly 
-
-// //  Parent node 
-
-
-// React Virtual DOM VS REAL Dom 
-
-
-console.dir(grandParent);
-console.dir(parent);
-console.dir(child);
+// }, 5000)
 
 
 
 
-// Painting and resizing 
+document.addEventListener("unload", () => {
+    button.removeEventListener("click", buttonClickHandler)
+})
+
+
+
+
+
