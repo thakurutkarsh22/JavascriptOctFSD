@@ -40,4 +40,20 @@ console.log("----------  outside--------- ")
 // }) 
 
 // 4. unload
+{/* <li> he they </li>
+
+
+<li> he they </li>
+<li> he they </li>
+<li> he they </li>
+
+
+MAC -> option 
+
+Window -> alt  */}
+
+
+
+
+
 
