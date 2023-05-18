@@ -99,6 +99,21 @@
 
 
 
+//  ---------------------- ARRAY DESTRUCTURING --------------------
+
+const arrDes = [100,212,3,4]
+
+const [firstVal, second, , fourthValue] = arrDes
+
+// it is as same as ->
+
+// const firstVal = arrDes[0];
+// const second = arrDes[1];
+
+console.log("array destructuring", firstVal, second, fourthValue)
+
+
+
 
 // / --- ------------ - - - - -- - - Looping   -----------------
 

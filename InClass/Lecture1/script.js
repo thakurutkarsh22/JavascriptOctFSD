@@ -56,5 +56,12 @@ console.log(lastName);
 // 
 
 
-// ------
+// ------ String Literal ----------------
 
+const variable = 1; // 
+
+const string1 = "asdasdasda";
+const string2 = 'asdasdasda';
+
+
+const string3 = `Hey your age is: ${variable}`
