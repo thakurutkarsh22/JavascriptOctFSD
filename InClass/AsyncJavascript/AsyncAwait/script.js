@@ -38,15 +38,30 @@
 
 
 async function fetchQuotes() {
-    const response = await fetch("https://api.kanye.rest/")
-    console.log(response)
-    const data = await response.json()
-    console.log(data); 
+    try {
+        const response = await fetch("https://api.kanye.rest/")
+        console.log(response)
+        const data = await response.json()
+        console.log(data); 
+    
+        const {quote} = data;
+        console.log(quote)
+    
+        addTotheDom(quote)
+    } catch (error) {
+        // handle
 
-    const {quote} = data;
-    console.log(quote)
+        // resoponse error handling 
 
-    addTotheDom(quote)
+
+        // data error handling 
+
+
+        // adding to the dom error handling 
+
+        // 
+    }
+
 }
 
 function addTotheDom(quote) {

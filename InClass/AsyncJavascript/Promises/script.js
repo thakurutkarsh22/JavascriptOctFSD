@@ -1,3 +1,31 @@
+/*
+    Why callbacks are not used 
+
+    1. Pyramid of doom 
+    2. Order of execution of inner callbacks is confusing (out of normal human recognizable pattern)
+
+
+    // Oder of execution.....
+
+// function googleCall('onbeading mails', (work) => {
+
+//     console.log(1);
+//     // 1 work ... 
+
+//     function googleGetReplies('funcalasdkha', (playwithReplies) => {
+//         // 2. replies 
+//         console.log(3)
+//     })
+
+//     console.log(2);
+//     googleGetReplies();
+
+// } ) 
+*/
+
+
+
+
 // Promise represents a future value, which right now you do not know, but it is assured that
 // will get the value in future.. 
 
@@ -103,6 +131,8 @@
 
 /*
     Error Handling 
+
+    When you get an error in any level, the error Handling WILL ALWAYS BE BELOW THAT LEVEL 
 */
 
 console.log("hello")
@@ -111,7 +141,15 @@ fetch('https://api.kanye.rest/')
             // response handler 
             throw Error("Error created by utkarsh ")
             return response.json()
-        })
+        }, 
+        (error) => {
+            console.log("i am error handlor inside the then", error)
+
+
+        }
+        
+        
+        )
         .then(data => {
             // data handler 
             console.log("data handler 0", data)
@@ -119,6 +157,8 @@ fetch('https://api.kanye.rest/')
             return "1 output"
         }).catch(erro => {
             console.log("error level 2", erro)
+
+            return 10
         })
         .then(data => {
             // number 1 handler 
@@ -145,6 +185,9 @@ fetch('https://api.kanye.rest/')
         })
 
 console.log("bye")
+
+
+
 
 
 
