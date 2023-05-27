@@ -135,57 +135,77 @@
     When you get an error in any level, the error Handling WILL ALWAYS BE BELOW THAT LEVEL 
 */
 
-console.log("hello")
-fetch('https://api.kanye.rest/')
-        .then(response => {
-            // response handler 
-            throw Error("Error created by utkarsh ")
-            return response.json()
-        }, 
-        (error) => {
-            console.log("i am error handlor inside the then", error)
+// console.log("hello")
+// fetch('https://api.kanye.rest/')
+//         .then(response => {
+//             // response handler 
+//             throw Error("Error created by utkarsh ")
+//             return response.json()
+//         }, 
+//         (error) => {
+//             console.log("i am error handlor inside the then", error)
 
 
-        }
+//         }
         
         
-        )
-        .then(data => {
-            // data handler 
-            console.log("data handler 0", data)
+//         )
+//         .then(data => {
+//             // data handler 
+//             console.log("data handler 0", data)
 
-            return "1 output"
-        }).catch(erro => {
-            console.log("error level 2", erro)
+//             return "1 output"
+//         }).catch(erro => {
+//             console.log("error level 2", erro)
 
-            return 10
-        })
-        .then(data => {
-            // number 1 handler 
-            console.log("data handler 1", data)
-            return 1
-        }).then(data => {
-            // num 2 handler
-            throw Error("error in down level")
-            console.log("data handler 2", data)
+//             return 10
+//         })
+//         .then(data => {
+//             // number 1 handler 
+//             console.log("data handler 1", data)
+//             return 1
+//         }).then(data => {
+//             // num 2 handler
+//             throw Error("error in down level")
+//             console.log("data handler 2", data)
 
-        }).then(data => {
-            // num3 handler 
-        }).catch(erro => {
-           console.log("errro block Level6", erro) 
+//         }).then(data => {
+//             // num3 handler 
+//         }).catch(erro => {
+//            console.log("errro block Level6", erro) 
 
-           // code for handling response handler
+//            // code for handling response handler
 
-        //    asdasda
+//         //    asdasda
 
-            // code for data handler 
+//             // code for data handler 
 
 
-            // code for number 1 handler 
-        })
+//             // code for number 1 handler 
+//         })
 
-console.log("bye")
+// console.log("bye")
 
+
+
+
+fetch("https://api.kanye.restasdsa/").then((data) => {
+    console.log(data)
+})
+// .catch(error => {
+//     console.log(error)
+// })
+
+
+
+// If error of promise is unhandeled
+
+
+window.addEventListener("unhandledrejection", () => {
+    console.log("global Error handler ")
+
+    // good screen, beautiful screen 
+})
 
 
 
