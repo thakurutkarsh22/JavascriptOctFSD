@@ -70,13 +70,13 @@ const userCopy2 = { ...user }
 
 //  -------- Value of the key would be the latest one 
 
-const obj1 = {
-    name: "utkarsh",
-    class: 9,
-    rollNumber: 8900,
+// const obj1 = {
+//     name: "utkarsh",
+//     class: 9,
+//     rollNumber: 8900,
 
-    name: "akash",
-}
+//     name: "akash",
+// }
 
 // console.log(obj1) // name: akash and not "utkarsh"
 
@@ -91,7 +91,7 @@ const objDes = {
     choiceOfAirways: "Go Airways"
 }
 
-console.log(objDes.choiceOfAirways)
+// console.log(objDes.choiceOfAirways)
 
 
 
@@ -110,7 +110,7 @@ const {rollNumber: rollCall, choiceOfAirways} = objDes
 
 // const rollCall = objDes.rollNumber;
 
-console.log(rollCall, choiceOfAirways, "rollcall")
+// console.log(rollCall, choiceOfAirways, "rollcall")
 
 
 
@@ -189,6 +189,52 @@ const entryPerson = Object.entries(person);
 // for (const arr of entryPerson) {
 //     console.log(`${arr[0]}: ${arr[1]} asdkasdasdlkasj`);
 //   }
+
+
+
+/*
+    Property Descriptors ..... 
+*/
+
+let obj2 = {
+  name : "utkarsh",
+  rollNumber: 45,
+  address: "road",
+}
+
+Object.defineProperty(obj2, 'cashInHand', {
+    value: 42,
+    enumerable: false
+});
+
+console.log(obj2)
+
+// obj2.asdasd = "asdasd"
+
+// propertyIsEnumerable
+
+console.log(obj2.propertyIsEnumerable("name"), "isName Enumerable")
+console.log(obj2.propertyIsEnumerable("rollNumber"), "is rollNumber Enumerable")
+console.log(obj2.propertyIsEnumerable("address"), "is address Enumerable")
+console.log(obj2.propertyIsEnumerable("cashInHand"), "is cashInHand Enumerable")
+
+// console.log(obj2)
+
+for (const key in obj2) {
+    console.log(key)
+    
+    // const element = object[key];
+        
+}
+
+
+
+
+// Enumerable -> the properties which are enumerable willbe part of for in 
+// else  that property wiill not be part 
+
+// for in 
+
 
 
 
