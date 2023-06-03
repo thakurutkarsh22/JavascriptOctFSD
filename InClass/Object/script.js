@@ -196,36 +196,42 @@ const entryPerson = Object.entries(person);
     Property Descriptors ..... 
 */
 
-let obj2 = {
-  name : "utkarsh",
-  rollNumber: 45,
-  address: "road",
-}
 
-Object.defineProperty(obj2, 'cashInHand', {
-    value: 42,
-    enumerable: false
-});
+// ---------------   1. Enumerable -> ....
 
-console.log(obj2)
+// let obj2 = {
+//   name : "utkarsh",
+//   rollNumber: 45,
+//   address: "road",
+
+// //   cashInHand: 42
+
+// }
+
+// Object.defineProperty(obj2, 'cashInHand', {
+//     value: 42,
+//     enumerable: false
+// });
+
+// console.log(obj2)
 
 // obj2.asdasd = "asdasd"
 
 // propertyIsEnumerable
 
-console.log(obj2.propertyIsEnumerable("name"), "isName Enumerable")
-console.log(obj2.propertyIsEnumerable("rollNumber"), "is rollNumber Enumerable")
-console.log(obj2.propertyIsEnumerable("address"), "is address Enumerable")
-console.log(obj2.propertyIsEnumerable("cashInHand"), "is cashInHand Enumerable")
+// console.log(obj2.propertyIsEnumerable("name"), "isName Enumerable")
+// console.log(obj2.propertyIsEnumerable("rollNumber"), "is rollNumber Enumerable")
+// console.log(obj2.propertyIsEnumerable("address"), "is address Enumerable")
+// console.log(obj2.propertyIsEnumerable("cashInHand"), "is cashInHand Enumerable")
 
 // console.log(obj2)
 
-for (const key in obj2) {
-    console.log(key)
+// for (const key in obj2) {
+//     console.log(key)
     
-    // const element = object[key];
+//     // const element = object[key];
         
-}
+// }
 
 
 
@@ -234,6 +240,254 @@ for (const key in obj2) {
 // else  that property wiill not be part 
 
 // for in 
+
+
+
+
+//  ------------- 2. Writable ------------
+
+// writable basically means the value can be changed ... 
+
+// let obj3 = {
+//     name : "utkarsh",
+//     rollNumber: 45,
+//     address: "road",  
+//   }
+
+
+//   Object.defineProperty(obj3, "cashInHand", {
+//     value: 100,
+//     writable: false,
+//     enumerable: true,
+//     configurable: true
+
+//   })
+
+// //    YOU cant do this bec indside defineProperty, the propert is checked. 
+//   Object.defineProperty(obj3, "cashInHand", {
+//     value: 100,
+//     writable: true,
+//     enumerable: true,
+//     configurable: true
+//   })
+
+
+//   console.log(obj3, "obj3")
+  
+//   console.log(obj3.cashInHand) // ? 100 
+
+//   obj3.cashInHand = 99;
+
+//   console.log(obj3.cashInHand) // ? 99
+
+//   delete obj3.cashInHand
+
+// 3  --------- configurable ------------ 
+
+// add delete 
+
+
+// const obj4 = {
+//     name: "utkarsh",
+// }
+
+// Object.defineProperty(obj4, "class", {
+//     value: "9th class",
+//     enumerable: true,
+//     configurable: false,
+//     writable: true,
+// })
+
+// obj4.class = "12th class"
+
+// // console.log(obj4, "obj4")
+
+// delete obj4.class
+
+
+
+// console.log(obj4, "obj4")
+
+
+/*
+    writable -> cant edit the vlaue of property, but can delete it,
+    Configurable -> cant delete the property but can change the value of the property,
+    enumerable -> to be part of for in loop.
+*/
+
+
+
+
+// properties of an object can be modified, deleted and new property added, 
+
+
+// 4. ---------------- Own Property ------
+//  the property of an object which is directly in the  object and not in the Prototype.
+
+
+
+// class Car {
+//     canmove
+
+//    func(){
+//     console.log("car audi");
+//    }
+// }
+
+
+// const carObj = {
+//     canMove: true,
+//     func: function() {
+//         console.log("carObj", carObj);
+//     }
+// }
+
+// console.log(carObj)
+
+// const descriptors = Object.getOwnPropertyDescriptor(carObj, "func")
+// console.log(descriptors, "descriptors fuc")
+
+
+// let carAudi = new Car();
+
+// console.log(carAudi)
+
+// const descriptors1 = Object.getOwnPropertyDescriptor(carAudi, "func")
+// const descriptors2 = Object.getOwnPropertyDescriptor(carAudi, "canmove")
+// console.log(descriptors1, "descriptors fuc")
+// console.log(descriptors2, "descriptors canMove")
+
+// console.log(carAudi, "c;lass car")
+// carAudi.func()
+
+
+
+/*
+    Few Derivative () properties of Object .. 
+
+*/
+
+// Object.seal -> you cant DELETE the existing properties and you cant ADD new Properties.
+//  you can modify the value of existing properties
+
+
+// const object1 = {
+//     property1: 42
+//   };
+  
+// Object.seal(object1);
+
+
+// console.log(Object.getOwnPropertyDescriptor(object1, "property1"))
+
+// // delete object1.property1;
+
+// // adding new property
+// object1.abcd = "sdasdas"
+
+// console.log(object1)
+
+
+
+// -----------  Object.freeze  --------
+// freeze is superset of seal -> 
+// no ADDITION, DELETION and EDITION of properties.
+
+// const object1 = {
+//     property1: 42
+//   };
+// Object.freeze(object1)
+
+// console.log(Object.getOwnPropertyDescriptor(object1, "property1"))
+
+
+// // cant add property
+// object1.abcd = "asdasdasdd"
+
+// // cant edit the property
+// object1.property1 = 99;
+
+// // cant delete the property
+
+// delete object1.property1
+
+// console.log(object1)
+
+
+/*
+    Date and Time Object.... 
+*/
+
+
+// const rightNowDate  = new Date()
+// console.log(rightNowDate)
+
+// Date, 
+
+// console.log(rightNowDate.getTime(), "time") // time in MIlli seconds from 1970 Jan 1 
+// console.log(rightNowDate.getDay(), "Day") 
+// console.log(rightNowDate.getDate(), "Date")
+// console.log(rightNowDate.getFullYear(), "year")
+
+
+// EDITING DATE OBJECT ->  SET 
+
+// date
+// rightNowDate.setDate(15)
+
+// rightNowDate.setFullYear(2099)
+
+// rightNowDate.
+
+// edit the milliseconds
+// minutes, hours, seconds.
+
+// console.log(rightNowDate)
+
+
+//  ------  get UTC time -----------
+
+// const rightNowDate  = new Date() // IST 
+// console.log(rightNowDate, "IST time");
+
+// const utcTime = rightNowDate.toUTCString();
+
+// console.log(utcTime, "utc time");
+
+// // const offset = new Date(utcTime).
+
+// console.log(offset, "offset")
+
+
+// -------- MATH ----------------------
+
+// let date = new Date();
+
+
+// let dateAdd2Hrs = new Date()
+
+// //  added 5 min 
+// dateAdd2Hrs.setTime(date.getTime() + 300000)
+
+// console.log(dateAdd2Hrs, date)
+
+
+// console.log( dateAdd2Hrs - date)
+
+
+
+
+/*
+
+    SUGGESTION: see the MOMENT library ..
+*/
+
+
+
+
+
+
+
 
 
 
