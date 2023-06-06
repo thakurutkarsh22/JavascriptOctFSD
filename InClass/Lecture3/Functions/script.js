@@ -2,7 +2,7 @@
     Functions
 */
 
-const { futimesSync } = require("fs");
+// const { futimesSync } = require("fs");
 
 // -> input (box) -> output
 
@@ -192,28 +192,96 @@ let math = {
 // Scanner scn = new Scanner () ;
 
 // SHALLOW COPY 
-let mathClone = { ...math }
+// let mathClone = { ...math }
 
 // let mathClone = { marks: 100, grade: "A" }
 
-let science = {
-    marks: 80,
-    grade: "B"
+// let science = {
+//     marks: 80,
+//     grade: "B"
+// }
+
+// let scienceClone = { ...science }
+
+// function sum (obj1, obj2) {
+//     obj1.marks = 1
+//     obj2.marks = 2
+
+//     console.log(obj1.marks, obj2.marks, "obj marks") // ? 1 ->
+// }
+
+// sum(mathClone, scienceClone)
+
+// console.log(math.marks, science.marks, " subject marks") // 2 ? 
+
+
+
+
+/*
+    Normal Function and Arrow Function 
+
+*/
+
+// console.log(" ---------- NOrmal func vs Arrow Function -------- ")
+
+// var a = 100;
+// var b = 99;
+
+// // global scope 
+
+// let obj = {
+//     a: 10,
+//     b: function() {
+//         // context -> this -> obj
+//         console.log(this.a)
+//         console.log(this)
+//     },
+//     c: () => {
+//         // Function scope 
+//         console.log(this.a)
+//         console.log(this)
+//     }
+// }
+
+
+// obj.b() // callsite 
+
+
+// obj.c(); 100 // ? 
+
+// 1. there is no concept of CONTEXT inside the Arrow function 
+
+// 2. this inside the arrow function is nothing but the parents context. 
+
+
+
+
+/*
+    ARGUMENTS 
+
+*/
+
+// function abc(a, b) {
+//     // this 
+//     const arg = arguments
+
+//     // arguments[0]
+
+//     console.log(arg, arg[0], arg[1]);
+// }
+
+// abc(100,299)
+
+
+// -> Arguments inside the Arrow function dosent have vaitage. 
+
+const abc = (a,b) => {
+    const arg = arguments; 
+
+    console.log(arg, arg[0], arg[1])
 }
 
-let scienceClone = { ...science }
-
-function sum (obj1, obj2) {
-    obj1.marks = 1
-    obj2.marks = 2
-
-    console.log(obj1.marks, obj2.marks, "obj marks") // ? 1 ->
-}
-
-sum(mathClone, scienceClone)
-
-console.log(math.marks, science.marks, " subject marks") // 2 ? 
-
+abc(1,2)
 
 
 
