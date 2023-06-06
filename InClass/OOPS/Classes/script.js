@@ -392,3 +392,98 @@
 
 
 // console.log(obj1, obj2)
+
+
+
+
+/*
+
+    Example
+*/
+
+// let obj = {
+//     name: "utkarsh"
+// }
+
+// function fun1(){
+
+//     // Context -> this -> obj 
+//     console.log(this); // obj
+    
+//     function f2(){
+//         // context -> this -> window
+//         console.log(this);
+//     }
+    
+//     f2();// callsite 
+    
+// }
+    
+// fun1.call(obj) // call site. 
+
+
+    // add(); -> default binding, -> window object .... 
+
+    // obj.add(): -> Implicit Binding 
+
+    // add.apply() -> Explict binding 
+
+    // new -> new 
+
+
+    // function foo2() {
+    //     //context -> this -> window 
+    //     console.log(this) // window obj
+    // }
+
+    // let obj21 = {
+    //     foo: function() {
+    //         // context -> this -> obj21
+    //         console.log(this) // obj21
+            
+    //         foo2(); // call site 2... 
+    //     }
+    // }
+
+    // obj21.foo(); // call site 1
+
+
+
+
+
+
+    function printThis(params) {
+        // context -> window
+        console.log(this);
+    }
+    
+    let obj = {
+    
+        a: 10,
+        b: 20,
+        c: printThis,
+        d: function (params) {
+            console.log(this) // OBJ
+            
+            printThis(); // 2. 
+            
+            let x = this.c; // x is nothing but printThis function only 
+            x(); // 3
+            
+            this.c(); // 4 -> obj.printThis()
+            
+            console.log(this.c == printThis);
+        }
+    }
+    
+    obj.d() // 1. Implict binding 
+
+
+//  1.   Obj
+// 2. Window.
+// 3. Window.
+// 4. Obj.
+// 5. true.
+
+
+
