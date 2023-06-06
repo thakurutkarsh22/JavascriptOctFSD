@@ -258,6 +258,8 @@
 
 class Shape {
 
+    color;
+
     constructor(color) {
         this.color = color;
     }
@@ -273,9 +275,8 @@ class Shape {
 
 
 class Circle extends Shape {
-
     constructor(radius, color) {
-        super(color);
+        super(color); // SHAPE CONSTRUCTURE 
         this.radius = radius;
     }
 
@@ -285,43 +286,127 @@ class Circle extends Shape {
     }
 }
 
-const circleObj = new Circle(10, "red")
-console.log(circleObj);
-circleObj.move()
+// const circleObj = new Circle(10, "red")
+// console.log(circleObj);
+// circleObj.move()
 
 
 
 
 
 
-function ShapeConstructor(color) {
-    this.color = color;
+// function ShapeConstructor(color) {
+//     this.color = color;
+// }
+
+// ShapeConstructor.prototype.move = function() {
+//     console.log("Move");
+// }
+
+
+// function CircleConstructor(radius, color) {
+//     ShapeConstructor.call(this, color) // Mocks the calling of the super keyword
+//     this.radius = radius;
+// }
+
+
+// //1.  By doing this I am setting the Inhertance 
+// // this is to set the PARENTS PROTOTYPE... 
+// CircleConstructor.prototype = Object.create(ShapeConstructor.prototype)
+
+
+// //2 . Now we add the Methods of the Circle.
+// CircleConstructor.prototype.draw = function() {
+//     console.log("Draw");
+// }
+
+
+
+// const circleConstObj = new CircleConstructor(1000, "pink")
+// console.log(circleConstObj)
+
+
+
+
+/*
+    COMPOSITION? -> MIXINS... 
+*/
+
+// JS -> instead of inheritance do Composition ... 
+
+
+// class Person {
+//     name
+// }
+
+// class Eat {
+    // eat
+// }
+
+// class Walk {
+//  walk
+// }
+
+// class Swim {
+//  swim
+// }
+
+// class Person extends Eat, Walk, Swim {
+
+// }
+
+// const perosn = new Person()
+
+// 1. multiple Inheritance is not supported. 
+// 2. All the properties all the methods would go inside the Person class 
+// which makes the object of Person class heavy.
+
+
+const canSwim = {
+    swim: function() {
+        console.log("swim")
+    }
 }
 
-ShapeConstructor.prototype.move = function() {
-    console.log("Move");
+const canEat = {
+    eat: function() {
+        console.log("eat")
+    },
+    funnywalk: false,
+}
+
+const canWalk = {
+    walk: function() {
+        console.log("walking nicely")
+    }
 }
 
 
-function CircleConstructor(radius, color) {
-    ShapeConstructor.call(this, color) // Mocks the calling of the super keyword
-    this.radius = radius;
+// constructor Function.
+function Person() {
+    this.name = "utkarsh"
 }
 
-
-//1.  By doing this I am setting the Inhertance 
-
-CircleConstructor.prototype = Object.create(ShapeConstructor.prototype)
+const utkarsh = new Person()
+console.log(utkarsh, "utkarsh person")
 
 
-//2 . Now we add the Methods of the Circle.
-CircleConstructor.prototype.draw = function() {
-    console.log("Draw");
+// taget Person Prototype ..
+// This is a glimpse of you doing the multiple inheritance . 
 
-}
+Object.assign(Person.prototype,canWalk,  canEat, canSwim)
+
+utkarsh.walk()
+utkarsh.eat()
+
+utkarsh.swim();
 
 
 
-const circleConstObj = new CircleConstructor(1000, "pink")
-console.log(circleConstObj)
+
+
+
+
+
+
 
