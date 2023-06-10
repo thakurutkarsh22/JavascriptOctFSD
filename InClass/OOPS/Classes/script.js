@@ -452,31 +452,31 @@
 
 
 
-    function printThis(params) {
-        // context -> window
-        console.log(this);
-    }
+    // function printThis(params) {
+    //     // context -> window
+    //     console.log(this);
+    // }
     
-    let obj = {
+    // let obj = {
     
-        a: 10,
-        b: 20,
-        c: printThis,
-        d: function (params) {
-            console.log(this) // OBJ
+    //     a: 10,
+    //     b: 20,
+    //     c: printThis,
+    //     d: function (params) {
+    //         console.log(this) // OBJ
             
-            printThis(); // 2. 
+    //         printThis(); // 2. 
             
-            let x = this.c; // x is nothing but printThis function only 
-            x(); // 3
+    //         let x = this.c; // x is nothing but printThis function only 
+    //         x(); // 3
             
-            this.c(); // 4 -> obj.printThis()
+    //         this.c(); // 4 -> obj.printThis()
             
-            console.log(this.c == printThis);
-        }
-    }
+    //         console.log(this.c == printThis);
+    //     }
+    // }
     
-    obj.d() // 1. Implict binding 
+    // obj.d() // 1. Implict binding 
 
 
 //  1.   Obj
@@ -484,6 +484,68 @@
 // 3. Window.
 // 4. Obj.
 // 5. true.
+
+
+
+/*
+    Concept of this with new Keyword 
+*/
+
+// function Person() {
+
+//     // {}
+
+//     this.name = 'Chetan';
+    
+//     this.age = 23;
+    
+//     this.sayAge = function() {
+//     // we cant set this here
+//         console.log(this.age);
+    
+//     };
+    
+// }
+
+    
+// const p = new Person();
+
+// const fun = p.sayAge;
+
+// fun()
+
+// Accoring to call site the binding is default... the context should be this.
+
+// but it is arrow function. 
+
+// so the converted code looks like this 
+
+
+// NOTE: There is no concept of binding in Arrow function.
+
+
+/*
+function Person() {
+    // {}
+  var _this = this;
+  this.name = 'Chetan';
+  this.age = 23;
+  this.sayAge = function () {
+    console.log(_this.age);
+  };
+}
+var p = new Person();
+var fun = p.sayAge;
+fun();
+
+*/
+
+/*
+    so int he above converted code we can see that the _this (VARIABLE) makes closure with the 
+    sayAge function.
+*/
+
+    
 
 
 
