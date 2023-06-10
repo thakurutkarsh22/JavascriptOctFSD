@@ -394,7 +394,7 @@ console.log(utkarsh, "utkarsh person")
 // taget Person Prototype ..
 // This is a glimpse of you doing the multiple inheritance . 
 
-Object.assign(Person.prototype,canWalk,  canEat, canSwim)
+Object.assign(Person.prototype, canWalk,  canEat, canSwim)
 
 utkarsh.walk()
 utkarsh.eat()
