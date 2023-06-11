@@ -124,23 +124,70 @@
 
 //  Question: what will be the output ..
 
-var a = 12;
-console.log(a) //12
+// var a = 12;
+// console.log(a) //12
 
-if(true){
-    var a = 13;
-    console.log(a) //13
-}
+// if(true){
+//     var a = 13;
+//     console.log(a) //13
+// }
 
-console.log(a) //13
+// console.log(a) //13
+
+// function abc() {
+//     var a = 12;
+//     console.log(a) //12
+//     return a;
+// }
+
+// abc()
+// // console.log(result1) // 12
+
+// console.log(a)// 13
+
+
+// ----  output of the question
+
+
+// for(var i=0; i<8;i++) {
+    
+//         console.log(i);
+
+//  } // 0 1 2 3 4 5 6 7
+
+
+
+// for(var i=0; i<8;i++) {
+//     setTimeout(() => {
+//         console.log(i);
+//     }, 2000)
+// }
+
+// 8 8 8 8 8 8 8 8
+
+
+// if you want to improve this 
+
+// for(let i=0; i<8;i++) {
+//     setTimeout(() => {
+//         console.log(i);
+//     }, 2000)
+// } // 0 1 2 3 4 5 6 7
+
+
+var a = 99;
+
+(() => {
+    var a = 12;
+    console.log(a)
+})()
+
 
 function abc() {
-    var a = 12;
-    console.log(a) //12
-    return a;
+    var a = 0;
+    console.log(a)
 }
 
-abc()
-// console.log(result1) // 12
+abc();
 
-console.log(a)// 13
+console.log(a)
