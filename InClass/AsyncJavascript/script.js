@@ -58,18 +58,41 @@
 //  ----- MULTIPLE SET TIMEOUTS ---------
 
 
-console.log("start")
+// console.log("start")
 
-setTimeout(() => {
-    console.log("c");
-}, 8000)
-
-
-setTimeout(() => {
-    console.log("b")
-}, 4000)
+// setTimeout(() => {
+//     console.log("c");
+// }, 8000)
 
 
+// setTimeout(() => {
+//     console.log("b")
+// }, 4000)
 
 
-console.log("end")
+
+
+// console.log("end")
+
+
+
+// -----------  set Interval, clearInterval, clearTimeout  -------------- 
+console.log("initial commit")
+
+let setTimeoutId = setTimeout(() => {
+    console.log("hey there setTime out");
+}, 3000)
+
+clearTimeout(setTimeoutId)
+
+console.log(setTimeoutId, "setTimeoutId");
+
+
+
+const setIntevalId = setInterval(() => {
+    console.log("repeat .....")
+}, 3000)
+
+clearInterval(setIntevalId)
+
+console.log(setIntevalId, "setIntevalId")
