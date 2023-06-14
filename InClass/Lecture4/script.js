@@ -175,19 +175,54 @@
 // } // 0 1 2 3 4 5 6 7
 
 
-var a = 99;
+// var a = 99;
 
-(() => {
-    var a = 12;
-    console.log(a)
-})()
+// globla scop
+// let i = 0;
+// (() => {
+//     // functional scope 
+//     var a = 12;
+//     console.log(a)
+// })()
 
 
-function abc() {
-    var a = 0;
-    console.log(a)
+// function abc() {
+//     var a = 0;
+//     console.log(a)
+// }
+
+// abc();
+
+// console.log(a)
+
+
+// globl? 
+
+// for(var i=0; i<8;i++) {
+//     setTimeout(() => {
+//         console.log(i);
+//     }, 2000)
+// } // 0 1 2 3 4 5 6 7
+
+for (var i = 0; i < 4; i++) {
+    console.log("index", i);
+    ( (index) => { 
+        
+        setTimeout(() => {
+            console.log(index, "hey there")
+            return undefined;
+        }, 2000)
+
+        return undefined;
+        
+    } ) (i)
+    
 }
 
-abc();
+// console.log(a)
 
-console.log(a)
+// function sum(a,b) { //
+
+// }
+
+// sum(1,2)// function invocation 
