@@ -141,3 +141,54 @@
 
 
 
+/*
+    Call Apply Bind
+*/
+
+const obj1 = {
+    name: "akash"
+}
+
+const obj2 = {
+    name: "utkarsh",
+    foo: function(a ,b,c,d) {
+        console.log(this.name, a,b,c,d);
+    }
+}
+
+
+obj2.foo.call(obj1, 10,11,12,13) // javasciprt
+
+// obj2.foo.apply(obj1, [10, 11,12,13])
+
+// const fooCopy =  obj2.foo.bind(obj1, 10, 11,12,13) // !call site 
+
+// fooCopy();
+
+// const obj1 = {
+//     name: "akash",
+//  fnName : foo
+// }
+
+// obj1.foo = obj2.foo
+
+
+// obj1.foo(1,2,3,4)
+
+
+// obj2.foo.apply(obj1, [10, 11,12,13])
+
+// obj2.foo.myCall 
+
+
+Function.prototype.myCall = function (context, ...args) { // rest operator 
+    const func = this;
+    const copyContext = {...context}
+    copyContext.fnName = func
+    copyContext.fnName(...args)
+}
+
+obj2.foo.myCall(obj1, 10,11,12,13)
+
+
+
