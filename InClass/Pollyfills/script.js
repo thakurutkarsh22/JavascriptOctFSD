@@ -130,6 +130,56 @@
 // console.log(resultMyReduce, "my reduce");
 
 
+//  ----- Push  ------- 
+
+
+// Array.prototype.myPush = function () {
+//     let va1 = arguments[0]
+//     let arr = this;
+
+//     let lenth = arr.length;
+//     arr[lenth] = va1;
+
+//     //  arr.push(va1);
+//      return arr.length;
+     
+//  }
+
+// let arr = [1,2,3];
+// let arr2 = [];
+
+// console.log(arr); // [1,2,3]
+
+// const resturnVal = arr.myPush(99); // 
+
+// console.log(arr); // [1,2,3,33]
+// console.log(resturnVal); // 4
+
+
+// -------- shift ------------ 
+
+// Array.prototype.myShift = function() {
+//     let arr = this;
+
+//     let returnVal = arr[0];
+
+//     let copyArr = [...arr];
+//     arr.length = 0; // this is how you are going to make array empty.
+
+//     for (let index = 1; index < copyArr.length; index++) {
+//         const element = copyArr[index];
+//         arr[index - 1 ] = element
+//     }
+//     return returnVal;
+// }
+
+// let arr = [10,2,3,4];
+// let returnVal  = arr.myShift(); 
+
+// console.log(arr); // [2, 3 ,4 ];
+// console.log(returnVal); // 10
+
+
 
 // Object
 
@@ -145,19 +195,101 @@
     Call Apply Bind
 */
 
+// const obj1 = {
+//     name: "akash"
+// }
+
+// const obj2 = {
+//     name: "utkarsh",
+//     foo: function(a ,b,c,d, e) {
+//         console.log(this.name, a,b,c,d, e);
+//     }
+// }
+
+
+// obj2.foo.call(obj1, 10,11,12,13, "call") // javasciprt
+// obj2.foo.apply(obj1, [10,11,12,13, "apply"]) // javasciprt
+
+
+
+
+// Function.prototype.myCall = function () { // rest operator 
+//     const func = this; // foo
+    
+//     let context = arguments[0];
+//     const args = [...arguments];
+//     console.log(args);
+//     args.shift();
+
+
+//     // console.log(arguments)
+
+
+//     const copyContext = {...context} // {name: "akash"}
+//     copyContext.fnName = func // {name: 'akash', fnName: func/foo }
+    
+//     copyContext.fnName(...args)
+// }
+
+// obj2.foo.myCall(obj1, 10,11,12,13, "mycall")
+
+
+// Function.prototype.myApply = function () { // rest operator 
+
+//     let context = arguments[0];
+//     let args = arguments[1];
+
+
+//     const func = this; // foo
+
+//     const copyContext = {...context} // {name: "akash"}
+//     copyContext.fnName = func // {name: 'akash', fnName: func/foo }
+    
+//     copyContext.fnName(...args)
+// }
+
+
+// obj2.foo.myApply(obj1, [10,11,12,13, "myAapply"]) // javasciprt
+
+
+
 const obj1 = {
     name: "akash"
 }
 
 const obj2 = {
     name: "utkarsh",
-    foo: function(a ,b,c,d) {
-        console.log(this.name, a,b,c,d);
+    foo: function(a ,b,c,d, e) {
+        console.log(this.name, a,b,c,d, e);
     }
+} 
+
+const fooBindedFunc = obj2.foo.bind(obj1, 1,2,3,4, "bind");
+fooBindedFunc()
+
+
+Function.prototype.myBind = function(context, ...args) {
+    let func = this;
+
+    return function() {
+        func.call(context, ...args);
+    }
+
 }
 
+const fooBindedFuncMyBind = obj2.foo.myBind(obj1, 1,2,3,4, "mybind");
+fooBindedFuncMyBind();
 
-obj2.foo.call(obj1, 10,11,12,13) // javasciprt
+
+
+
+
+
+
+
+
+///// ------ 
+
 
 // obj2.foo.apply(obj1, [10, 11,12,13])
 
@@ -179,16 +311,3 @@ obj2.foo.call(obj1, 10,11,12,13) // javasciprt
 // obj2.foo.apply(obj1, [10, 11,12,13])
 
 // obj2.foo.myCall 
-
-
-Function.prototype.myCall = function (context, ...args) { // rest operator 
-    const func = this;
-    const copyContext = {...context}
-    copyContext.fnName = func
-    copyContext.fnName(...args)
-}
-
-obj2.foo.myCall(obj1, 10,11,12,13)
-
-
-
