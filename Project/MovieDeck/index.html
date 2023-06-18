@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+
+    <header class="header">
+        <a href="http://localhost:5500/Project/MovieDeck/" style="text-decoration: none">
+            <h1 style="color: white">Movie Deck</h1>
+        </a>
+
+        <div class="contacts">
+            Abouts
+        </div>
+    </header>
+
+    <!-- search bar -->
+
+    <div class="search-bar">
+        <input type="search" id="search-input" placeholder="Enter your query" >
+    </div>
+
+    <!-- sorting bar -->
+
+    <div class="sorting-options">
+        <button class="soring-button" id="sort-by-date">Sort By date(oldest latest)</button>
+        <button class="soring-button" id="sort-by-rating">Sort By Rating(least good)</button>
+    </div>
+
+
+    <!-- main section -->
+
+    <div class="main">
+
+        <!-- tabs -->
+
+        <div class="tab">
+            <button class="all-tab">All</button>
+            <button class="favorites-tab">Favorites</button>
+        </div>
+
+
+
+        <!-- main movie list -->
+
+        <div class="movies-card-container"> 
+            <div class="card">
+                <section>
+                    <img src="" alt="placeholder picture">
+                </section>
+
+                <p class="title">
+                    Dummy movie name
+                </p>
+
+                <section class="votes-favorites">
+
+                    <section class="votes">
+                        <p class="vote-count">Votes: 99/100</p>
+                        <p class="vote-rating">Rating: Good</p>
+                    </section>
+
+                    <section class="favorites">
+                        <i class="fa-regular fa-heart"></i>
+                        <!-- <i class="fa-solid fa-heart"></i> -->
+                    </section>
+
+                </section>
+
+
+            </div>
+           
+            <div>item2</div>
+            <div>item3</div>
+            <div>item4</div>
+
+
+            <div>item5</div>
+            <div>item6</div>
+            <div>item7</div>
+            <div>item8</div>
+            <div>item9</div>
+            <div>item10</div>
+
+
+
+        </div>
+
+        <div class="pagination">
+            <button id="prev-button">Previous</button>
+            <button id="current-page-button">Current Page: 1</button>
+            <button id="next-button">Next</button>
+        </div>
+
+    </div>
+
+
+    
+    
+    <footer>
+        
+        <div class="copyright">
+            @ copy right: 1996 Movie Deck 
+        </div>
+
+        <div class="contacts">
+            tel: 01127027251
+        </div>
+
+
+    </footer>
+    
+</body>
+</html>
