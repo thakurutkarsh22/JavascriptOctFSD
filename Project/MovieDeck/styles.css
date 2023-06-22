@@ -4,6 +4,7 @@
 
 #movies-card-container {
     display: grid;
+    gap: 16px;
     grid-template-columns: 1fr 1fr 1fr 1fr;
 }
 
@@ -78,4 +79,11 @@
 .footer {
     background-color: gray;
     margin-top: 10px;
+}
+
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 16px;
 }

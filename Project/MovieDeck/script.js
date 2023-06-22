@@ -1,6 +1,23 @@
 
+// States 
 
+let currentPage = 1;
+let lastPage = 100
 
+// SELECTOR 
+
+const movieCardContainer = document.getElementById("movies-card-container");
+const prevButton = document.getElementById("prev-button");
+const nextButton = document.getElementById("next-button");
+const pageNumberButton = document.getElementById("current-page-button");
+
+// --- search selector
+
+const searchButton  = document.getElementById("search-button");
+const searchInput = document.getElementById("search-input");
+
+const sortByDateButton = document.getElementById("sort-by-date");
+const sortByRatingButton = document.getElementById("sort-by-rating");
 
 
 //----  Fetch the movies from certain page..
@@ -20,13 +37,15 @@ async function fetchMovie(pageNumber) {
         const response = await fetch(url, options)
         let data = await response.json();
 
-        data = remapData(data)
+        // Lets set the Last Page Value
 
-        console.log(data, "data debug")
+        const {total_pages} = data
+        lastPage =total_pages;
+        lastPage = 3 // this is for demo purpose remove this for real page disable and page limit
 
-        renderMovies(data)
-
-        return data;
+        const changedData = remapData(data)
+        renderMovies(changedData)
+        return changedData;
 
 
     } catch(error) {
@@ -35,11 +54,7 @@ async function fetchMovie(pageNumber) {
 }
 
 function remapData(data) {
-
     const moviesList = data.results;
-
-    console.log(moviesList, "movie list is here")
-
     const modifiedMovieList = moviesList.map(movie => {
         return {
             title: movie.title,
@@ -48,20 +63,20 @@ function remapData(data) {
             popularity: movie.popularity
         }
     })
-
-    console.log(modifiedMovieList, "modifiedMovieList list is here")
-
-
     return modifiedMovieList;
-
 }
 
-fetchMovie(1)
+fetchMovie(currentPage)
 
 
 // ----- rendering the movies ----------- 
 
 function renderMovies(moviesList) {
+    
+    // Clearing the Older Movies in the Grid Layout  
+
+    movieCardContainer.innerHTML = ""
+
     moviesList.forEach(movie => {
         const {popularity, posterPath, title, voteAverage} = movie
         
@@ -115,7 +130,7 @@ function renderMovies(moviesList) {
         // I need to push that UI to the DOM to the Grid container
 
         const gridContainer = document.getElementById("movies-card-container");
-        console.dir(gridContainer)
+        // console.dir(gridContainer)
         gridContainer.appendChild(cardDiv);
 
 
@@ -123,3 +138,99 @@ function renderMovies(moviesList) {
 
     })
 }
+
+
+// Listners 
+
+prevButton.disabled = true;
+
+
+nextButton.addEventListener("click", () => {
+
+    currentPage++;
+
+    // Work 1: call API for new Page.
+
+    fetchMovie(currentPage);
+
+    // Work 2: update the page number in the HTML
+
+    pageNumberButton.innerHTML = ` Current Page: ${currentPage}`
+    
+
+    if(currentPage === 1) {
+        prevButton.disabled = true;
+    } else if (currentPage === 2) {
+        prevButton.disabled = false;
+    } else if(currentPage === lastPage) {
+        nextButton.disabled = true;
+    }
+    
+
+});
+
+prevButton.addEventListener("click", () => {
+    currentPage--;
+    console.log("current Page Debug", currentPage, lastPage)
+
+    fetchMovie(currentPage);
+
+    pageNumberButton.innerHTML = ` Current Page: ${currentPage}`    
+
+
+    if(currentPage === 1) {
+        prevButton.disabled = true;
+    } else if (currentPage === 2 && currentPage !== lastPage -1) {
+        prevButton.disabled = false;
+    } else if (currentPage === lastPage -1) {
+        nextButton.disabled = false;
+    }
+
+});
+
+
+async function searchMovies(movieName) {
+    try {
+
+        const url = `https://api.themoviedb.org/3/search/movie?query=${movieName}&api_key=c13145a90d2d1748b8e9ec01e895106e`
+
+        const response = await fetch(url)
+        const data = await response.json();
+
+        const changedData = remapData(data)
+        renderMovies(changedData)
+
+    } catch(error) {
+        console.log("error iss here");
+    }
+}
+
+searchButton.addEventListener("click", () => {
+    const query = searchInput.value;
+    searchInput.value = "";
+
+    searchMovies(query)
+
+})
+
+
+sortByRatingButton.addEventListener("click", async () => {
+    const options = {
+        method: 'GET',
+        headers: {
+          accept: 'application/json',
+          Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjMTMxNDVhOTBkMmQxNzQ4YjhlOWVjMDFlODk1MTA2ZSIsInN1YiI6IjY0OTFkNmJhYzNjODkxMDBhZTUyYjMwZiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.QpP1DZY3CSd2CRNgf9CSBWOxcaaXupzPo9Wd2r-_G_A'
+        }
+      };
+      
+      const response = await fetch('https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc', options);
+      const data = await response.json()
+       
+      const changedData = remapData(data)
+      renderMovies(changedData)
+})
+
+
+
+
+
