@@ -49,10 +49,33 @@ function setMoviesToLocalStorage(movie) {
     localStorage.setItem("favMovie", JSON.stringify(arrayOfMovies))
 }
 
+function removeFavMovieFromLocalStorage(id) {
+    const favMoviesid = getMovesFromLocalStorage();
+    const filteredMovies = favMoviesid.filter((movieId) => movieId != id)
+    localStorage.setItem("favMovie", JSON.stringify(filteredMovies))
+}
+
 
 //----  Fetch the movies from certain page..
 
-async function fetchMovie(pageNumber) {
+async function fetchMovieWithId(id) {
+    const url = `https://api.themoviedb.org/3/movie/${id}?api_key=c13145a90d2d1748b8e9ec01e895106e`
+    const response = await fetch(url)
+    const dataList = await response.json();
+
+        return {
+            title: dataList.title,
+            voteAverage: dataList.vote_average,
+            posterPath: dataList.poster_path,
+            popularity: dataList.popularity,
+            id: dataList.id
+        }
+}
+
+
+
+
+async function fetchAllMovie(pageNumber) {
     try {
 
         const options = {
@@ -100,7 +123,7 @@ function remapData(data) {
     return modifiedMovieList;
 }
 
-fetchMovie(currentPage)
+fetchAllMovie(currentPage)
 
 
 // ----- rendering the movies (All) ----------- 
@@ -110,14 +133,21 @@ function clearMovieContainer() {
 }
 
 function renderMovies(moviesList) {
+
+    // Get the Fav Movie
+    const favMovieList = getMovesFromLocalStorage(); //4
+    console.log(favMovieList, "favMovieList debug")
     
     // Clearing the Older Movies in the Grid Layout  
 
     clearMovieContainer()
 
-    console.log("movie List", moviesList)
+    console.log("movie List", moviesList) // 20 - 25
     moviesList.forEach(movie => {
         const {popularity, posterPath, title, voteAverage, id} = movie
+
+        const isfavMovie = favMovieList.indexOf(id+"") > -1
+
         
         //  i want to crate a ui of Card \
         const cardDiv = document.createElement("div");
@@ -160,7 +190,7 @@ function renderMovies(moviesList) {
                     </section>
 
                     <section class="favorites">
-                        <i id="${id}" class="fa-regular fa-heart"></i>
+                        <i id="${id}" class="fa-regular fa-heart ${isfavMovie ? 'fa-solid' : ''}"></i>
                     </section>
 
                 </section>
@@ -187,6 +217,14 @@ function renderMovies(moviesList) {
             if(favItemButton.classList.contains('fa-solid')){
                 // now you want to mark unfav
 
+                // --- remove the movie from the local storarge
+
+                removeFavMovieFromLocalStorage(id)
+
+
+                //  ------ have the normal heart sign 
+
+                favItemButton.classList.remove("fa-solid")
 
             } else {
                 // you want to mark fav
@@ -205,8 +243,35 @@ function renderMovies(moviesList) {
     })
 }
 
-function renderFavMovies() {
+async function renderFavMovies() {
     clearMovieContainer()
+
+    // add the card for the fav movies... 
+
+    // --- get all fav Movies 
+
+    const favMovieList = getMovesFromLocalStorage(); // id[240, 290]
+
+    const favMovieListData = [];
+
+    for (let index = 0; index < favMovieList.length; index++) {
+        const movieId = favMovieList[index];
+
+        const response = await fetchMovieWithId(movieId)
+
+        favMovieListData.push(response);
+
+        
+    }
+
+    console.log(favMovieListData, "favMovieListData debug")
+
+    renderMovies(favMovieListData) //TODO: make different render method for fav
+
+    // styep 1 make sure the movie id is deleted from the localstorage 
+// step 2 = make the grid blank (clearMovieContainer)
+// step 3 = refetch  the fav movies and then you are renderFavMovies();
+
 }
 
 async function searchMovies(movieName) {
@@ -303,7 +368,7 @@ nextButton.addEventListener("click", () => {
 
     // Work 1: call API for new Page.
 
-    fetchMovie(currentPage);
+    fetchAllMovie(currentPage);
 
     // Work 2: update the page number in the HTML
 
@@ -325,7 +390,7 @@ prevButton.addEventListener("click", () => {
     currentPage--;
     console.log("current Page Debug", currentPage, lastPage)
 
-    fetchMovie(currentPage);
+    fetchAllMovie(currentPage);
 
     pageNumberButton.innerHTML = ` Current Page: ${currentPage}`    
 
@@ -341,15 +406,17 @@ prevButton.addEventListener("click", () => {
 });
 
 
-
-
-searchButton.addEventListener("click", () => {
+const searchButtonCallbackFunction =  () => {
     const query = searchInput.value;
     searchInput.value = "";
 
     searchMovies(query)
 
-})
+}
+
+const debouncedSearchButtonCallbackFunction =  searchButtonCallbackFunction // This is what you need to implement
+
+searchButton.addEventListener("click", debouncedSearchButtonCallbackFunction)
 
 
 sortByRatingButton.addEventListener("click", async () => {
