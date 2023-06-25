@@ -1,4 +1,4 @@
-// Globla execution contexrt
+// Global execution context
 
 /*
     Question1: 
@@ -22,4 +22,22 @@
 //
 console.log(a) // Error
 console.log(b) // 3
+
+
+/*
+    Question2: 
+
+    function getPersonInfo(one, two, three) {
+      console.log(one);
+      console.log(two);
+      console.log(three);
+    }
+    const person = 'Lydia';
+    const age = 21;
+
+getPersonInfo`${person} is ${age} years old`;
+
+    
+*/
+
 
