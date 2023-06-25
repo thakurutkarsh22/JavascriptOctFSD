@@ -1,8 +1,9 @@
 
 // States 
-
 let currentPage = 1;
 let lastPage = 100
+
+let movies = [];
 
 // SELECTOR 
 
@@ -18,6 +19,35 @@ const searchInput = document.getElementById("search-input");
 
 const sortByDateButton = document.getElementById("sort-by-date");
 const sortByRatingButton = document.getElementById("sort-by-rating");
+
+//  --- tab selector 
+
+const allTabButton = document.getElementById("all-tab")
+const favTabButton = document.getElementById("favorites-tab")
+
+
+// ------------- LOCAL HOST GET AND SET MOVIE S ------------- 
+
+
+function getMovesFromLocalStorage() {
+    const allTheFavMovieString = JSON.parse(localStorage.getItem("favMovie"))
+
+    if(allTheFavMovieString === null || allTheFavMovieString === undefined) {
+        return [];
+    } else {
+        return allTheFavMovieString;
+    }
+
+}
+
+
+function setMoviesToLocalStorage(movie) {
+    const allFavMovie = getMovesFromLocalStorage()
+
+    const arrayOfMovies = [...allFavMovie, movie]
+
+    localStorage.setItem("favMovie", JSON.stringify(arrayOfMovies))
+}
 
 
 //----  Fetch the movies from certain page..
@@ -44,6 +74,9 @@ async function fetchMovie(pageNumber) {
         lastPage = 3 // this is for demo purpose remove this for real page disable and page limit
 
         const changedData = remapData(data)
+        
+        movies = changedData;
+        
         renderMovies(changedData)
         return changedData;
 
@@ -60,7 +93,8 @@ function remapData(data) {
             title: movie.title,
             voteAverage: movie.vote_average,
             posterPath: movie.poster_path,
-            popularity: movie.popularity
+            popularity: movie.popularity,
+            id: movie.id
         }
     })
     return modifiedMovieList;
@@ -69,16 +103,21 @@ function remapData(data) {
 fetchMovie(currentPage)
 
 
-// ----- rendering the movies ----------- 
+// ----- rendering the movies (All) ----------- 
+
+function clearMovieContainer() {
+    movieCardContainer.innerHTML = ""
+}
 
 function renderMovies(moviesList) {
     
     // Clearing the Older Movies in the Grid Layout  
 
-    movieCardContainer.innerHTML = ""
+    clearMovieContainer()
 
+    console.log("movie List", moviesList)
     moviesList.forEach(movie => {
-        const {popularity, posterPath, title, voteAverage} = movie
+        const {popularity, posterPath, title, voteAverage, id} = movie
         
         //  i want to crate a ui of Card \
         const cardDiv = document.createElement("div");
@@ -121,11 +160,14 @@ function renderMovies(moviesList) {
                     </section>
 
                     <section class="favorites">
-                        <i class="fa-regular fa-heart"></i>
+                        <i id="${id}" class="fa-regular fa-heart"></i>
                     </section>
 
                 </section>
         `
+
+
+
 
         // I need to push that UI to the DOM to the Grid container
 
@@ -134,10 +176,120 @@ function renderMovies(moviesList) {
         gridContainer.appendChild(cardDiv);
 
 
-        // document.body.appendChild(cardDiv)
+        // select Fav item and then add eventListner to it. 
+        const favItemButton = document.getElementById(id);
+
+        favItemButton.addEventListener("click", (event) => {
+            const hearSignElement = event.target
+            const {id} = hearSignElement
+
+            // if it is already fav
+            if(favItemButton.classList.contains('fa-solid')){
+                // now you want to mark unfav
+
+
+            } else {
+                // you want to mark fav
+                setMoviesToLocalStorage(id);
+
+                // set the logo 
+                favItemButton.classList.add('fa-solid')
+            }
+        })
+
+        // console.log(favItemButton, "fav item button")
+
+
+        
 
     })
 }
+
+function renderFavMovies() {
+    clearMovieContainer()
+}
+
+async function searchMovies(movieName) {
+    try {
+
+        const url = `https://api.themoviedb.org/3/search/movie?query=${movieName}&api_key=c13145a90d2d1748b8e9ec01e895106e`
+
+        const response = await fetch(url)
+        const data = await response.json();
+
+        const changedData = remapData(data)
+        renderMovies(changedData)
+
+    } catch(error) {
+        console.log("error iss here");
+    }
+}
+
+function displayMovies() {
+    // who is active tab ?? 
+    if (favTabButton.classList.contains('active-tab')) {
+        sortByDateButton.style.display = "none";
+        sortByRatingButton.style.display = "none";
+
+        renderFavMovies()
+    } else if(allTabButton.classList.contains('active-tab')) {
+        // show my sort button both
+        sortByDateButton.style.display = "inline-block";
+        sortByRatingButton.style.display = "inline-block";
+        renderMovies(movies)
+    }
+}
+
+
+// Favourites Tab
+
+function showFav(favMovie) {
+
+    const {popularity, posterPath, title, voteAverage} = favMovie
+
+
+    const cardDiv = document.createElement("div");
+        cardDiv.classList.add('card')
+
+    cardDiv.innerHTML = `
+            <section>
+                <img class="poster" src=${posterUrl} alt="placeholder picture">
+            </section>
+
+            <p class="title">
+                ${title}
+            </p>
+
+            <section class="votes-favorites">
+
+                    <section class="votes">
+                        <p class="vote-count">Votes: ${voteAverage}</p>
+                        <p class="vote-rating">Rating: ${popularity}</p>
+                    </section>
+
+                    <section class="favorites">
+                        <i class="fa-regular fa-heart"></i>
+                    </section>
+
+                </section>
+        `
+
+
+    // Removal of the Card....
+
+
+}
+
+function switchTab(event) {
+    allTabButton.classList.remove("active-tab");
+    favTabButton.classList.remove("active-tab");
+
+    const whoClickedMe = event.target;
+    whoClickedMe.classList.add('active-tab');
+
+    displayMovies()
+}
+
 
 
 // Listners 
@@ -189,21 +341,7 @@ prevButton.addEventListener("click", () => {
 });
 
 
-async function searchMovies(movieName) {
-    try {
 
-        const url = `https://api.themoviedb.org/3/search/movie?query=${movieName}&api_key=c13145a90d2d1748b8e9ec01e895106e`
-
-        const response = await fetch(url)
-        const data = await response.json();
-
-        const changedData = remapData(data)
-        renderMovies(changedData)
-
-    } catch(error) {
-        console.log("error iss here");
-    }
-}
 
 searchButton.addEventListener("click", () => {
     const query = searchInput.value;
@@ -231,6 +369,15 @@ sortByRatingButton.addEventListener("click", async () => {
 })
 
 
+// --- Fav and all tab 
+
+allTabButton.addEventListener("click", switchTab );
+favTabButton.addEventListener("click", switchTab );
 
 
+
+
+movieCardContainer.addEventListener("click", (event) => {
+    console.dir(movieCardContainer)
+})
 

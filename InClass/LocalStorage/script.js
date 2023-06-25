@@ -22,3 +22,34 @@ console.log("console ans");
 // console.log(localStorage.length, "length of the local storge")
 
 
+
+
+// Get from Local Storage 
+
+
+const nameKey  = localStorage.getItem("name")
+console.log(nameKey, "name Key");
+
+
+
+
+// make sure every Object you are string in the localStorage that is CONVERTED to strings 
+// bec LocalStorage dosent Have capability to store objects
+
+
+// localStorage.setItem("item", {name: "utkarsh", class: 9}); // this will not work
+localStorage.setItem("item", JSON.stringify({name: "utkarsh", class: 9})); // this will not work
+
+
+// Now you need the object back 
+
+let stringObj = localStorage.getItem("item")
+
+// now we need to convert this stringObj to real Object
+
+const realObj = JSON.parse(stringObj)
+
+
+console.log(realObj);
+
+
