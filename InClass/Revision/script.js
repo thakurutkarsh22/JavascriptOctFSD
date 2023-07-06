@@ -151,3 +151,52 @@ let y= x();
 
 
 // 4
+
+
+
+// Question 
+
+
+let arr = [1,2,5]
+
+let resfind7 = arr.reduce((accumulator ,value)=>{
+
+return accumulator + value;
+
+}, true); //(It takes by default true is 1)
+
+console.log(resfind7); 
+
+//OutPut => 9
+
+
+// Explanation: Boolean + Number  = Number; 
+// Boolean will change itself to a number (coersion). 
+
+
+
+
+
+// Question 
+
+
+function outer(){
+    console.log('First',a);
+       var a = 2
+    function inner(){
+        a++;
+        console.log('Second',a);
+        var a = 4;
+        console.log('Third',a);
+    }
+    inner();
+}
+outer();
+
+
+// First Undefined
+// Second NaN     -> (undefined  + 1  = NaN)
+// Third 4
+
+
+
