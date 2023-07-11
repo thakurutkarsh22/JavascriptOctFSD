@@ -201,11 +201,36 @@ fetch("https://api.kanye.restasdsa/").then((data) => {
 // If error of promise is unhandeled
 
 
-window.addEventListener("unhandledrejection", () => {
-    console.log("global Error handler ")
+// window.addEventListener("unhandledrejection", () => {
+//     console.log("global Error handler ")
 
-    // good screen, beautiful screen 
-})
+//     // good screen, beautiful screen 
+// })
+
+
+
+/*
+    PROMISES are EAGER in nature... 
+
+*/
+
+
+const promise = new Promise((res, rej) => {
+
+    res(100);
+    console.log(4)
+});
+
+
+console.log(1)
+
+promise.then(data => console.log("promise", data))
+
+
+console.log(2)
+
+
+
 
 
 
